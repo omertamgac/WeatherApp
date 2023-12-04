@@ -11,14 +11,16 @@
         android:id="@+id/txtCity"
         android:layout_width="152dp"
         android:layout_height="56dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
         android:text="Istanbul"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/imgSymbol"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txtDegree"
@@ -28,8 +30,10 @@
         android:text="22°"
         android:textColor="@color/white"
         android:textSize="70sp"
+        app:layout_constraintBottom_toTopOf="@+id/imgSymbol"
         app:layout_constraintStart_toStartOf="@+id/txtCity"
-        app:layout_constraintTop_toBottomOf="@+id/txtCity" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCity"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imgSymbol"
@@ -39,5 +43,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintVertical_bias="0.408"
+        app:srcCompat="@drawable/day_clear" />
 </androidx.constraintlayout.widget.ConstraintLayout>

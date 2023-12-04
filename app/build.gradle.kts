@@ -35,6 +35,7 @@ android {
     }
 }
 
+val retrofitVersion ="2.3.0"
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -44,4 +45,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
+
 }
