@@ -2,6 +2,12 @@ package com.example.weatherapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,46 +20,50 @@ class MainActivity : AppCompatActivity() {
 
     private val BASE_URL = "https://api.openweathermap.org/data/2.5/"
     private var weatherModels: ArrayList<WeatherModel>?=null
-
+    private var job : Job?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         loadData()
+
     }
 
     private fun loadData() {
-        val retrofit=Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(WeatherAPI::class.java)
 
-        //API ile retrofit'i bağlama
-        val service = retrofit.create(WeatherAPI::class.java)
-        val call=service.getData()
+        job = CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = retrofit.getData()
 
-        call.enqueue(object: Callback<WeatherModel>{
-            override fun onResponse(
-                call: Call<WeatherModel>,
-                response: Response<WeatherModel>
-            ) {
-                if (response.isSuccessful){
-                    response.body()?.let {
-                        val weatherModel = response.body()
-                        weatherModel?.let {
-                            println(it.name)
-                          //  println(it.main.temp-273.15)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            val weatherModel = response.body()
+                            weatherModel?.let {
+
+
+                                findViewById<ImageView>(R.id.imgSymbol).setImageResource(R.drawable.day_rain)
+
+                            }
                         }
                     }
                 }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                println(e)
             }
-
-            override fun onFailure(call: Call<WeatherModel>, t: Throwable) {
-                t.printStackTrace()
-                println("Başarısız")
-            }
-
-        })
+        }
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        job?.cancel()
+    }
 }
+
+
+

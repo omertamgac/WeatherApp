@@ -35,7 +35,8 @@ android {
     }
 }
 
-val retrofitVersion ="2.3.0"
+val retrofitVersion ="2.9.0"
+val coroutinesVersion = "1.5.0"
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -47,6 +48,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-
-
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 }
