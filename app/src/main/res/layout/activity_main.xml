@@ -4,45 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/txtCity"
-        android:layout_width="152dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="416dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="312dp"
         android:text="Istanbul"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/imgSymbol"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="54sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtDegree"
-        android:layout_width="130dp"
-        android:layout_height="81dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="195dp"
+        android:layout_height="79dp"
         android:text="22°"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="70sp"
-        app:layout_constraintBottom_toTopOf="@+id/imgSymbol"
-        app:layout_constraintStart_toStartOf="@+id/txtCity"
-        app:layout_constraintTop_toBottomOf="@+id/txtCity"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSymbol"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imgSymbol"
-        android:layout_width="155dp"
-        android:layout_height="150dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="184dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408"
-        app:srcCompat="@drawable/day_clear" />
+        app:srcCompat="@drawable/clear" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:layout_constraintEnd_toStartOf="@+id/txtHumditiy"
+        app:layout_constraintTop_toBottomOf="@+id/txtCity"
+        app:srcCompat="@drawable/wind" />
+
+    <TextView
+        android:id="@+id/txtHumditiy"
+        android:layout_width="128dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:text="15km/h"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCity" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCity"
+        app:srcCompat="@drawable/humditiy" />
+
+    <TextView
+        android:id="@+id/txtNem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:text="30%"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/txtCity" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
