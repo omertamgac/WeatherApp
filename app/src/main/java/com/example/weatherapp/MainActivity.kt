@@ -1,5 +1,6 @@
 package com.example.weatherapp
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -28,7 +29,7 @@ import kotlin.math.roundToInt
         binding=ActivityMainBinding.inflate(layoutInflater)
         val view=binding.root
         setContentView(view)
-        loadData("Paris")
+        loadData("Istanbul")
     }
 
     fun search(view : View){
@@ -53,18 +54,43 @@ import kotlin.math.roundToInt
                         response.body()?.let {
                             val weatherModel = response.body()
                             weatherModel?.let {
+                           //City name
                             binding.txtCity.text=it.name
+
+                                //calculate time
                                 val dg=it.weather[0].main
-                                println(dg)
-                            when(dg){
-                                "Drizzle"-> binding.imgSymbol.setImageResource(R.drawable.dizzle)
-                                "Rain"-> binding.imgSymbol.setImageResource(R.drawable.rainn)
-                                "Snow"-> binding.imgSymbol.setImageResource(R.drawable.snoww)
-                                "Clear"-> binding.imgSymbol.setImageResource(R.drawable.clear)
-                                "Clouds"-> binding.imgSymbol.setImageResource(R.drawable.clouds)
-                                else-> binding.imgSymbol.setImageResource(R.drawable.fogg)
-                            }
-                           //Derece yazdırma
+                                val currentTime = System.currentTimeMillis()/1000
+                                val sunriseTimestamp=it.sys.sunrise as? Long
+                                val sunsetTimestamp = it.sys.sunset as? Long
+
+                                //Making necessary changes according to time and weather conditions.
+                                if (currentTime in sunriseTimestamp!!..sunsetTimestamp!!) {
+                                    binding.root.setBackgroundResource(R.drawable.gradient_background)
+                                    when(dg){
+                                        "Drizzle"-> binding.imgSymbol.setImageResource(R.drawable.dizzle)
+                                        "Rain"-> binding.imgSymbol.setImageResource(R.drawable.rainn)
+                                        "Snow"-> binding.imgSymbol.setImageResource(R.drawable.snoww)
+                                        "Clear"-> binding.imgSymbol.setImageResource(R.drawable.clear)
+                                        "Clouds"-> binding.imgSymbol.setImageResource(R.drawable.clouds)
+                                        else-> binding.imgSymbol.setImageResource(R.drawable.fogg)
+                                    }
+                                } else {
+                                    binding.root.setBackgroundResource(R.drawable.gradient_background_night)
+                                    when(dg){
+                                        "Drizzle"-> binding.imgSymbol.setImageResource(R.drawable.ndizzle)
+                                        "Rain"-> binding.imgSymbol.setImageResource(R.drawable.nrain)
+                                        "Snow"-> binding.imgSymbol.setImageResource(R.drawable.snoww)
+                                        "Clear"-> binding.imgSymbol.setImageResource(R.drawable.nightclear)
+                                        "Clouds"-> binding.imgSymbol.setImageResource(R.drawable.clouds)
+                                        else-> binding.imgSymbol.setImageResource(R.drawable.fogg)
+                                    }
+                                }
+                              //adjusting wind speed and humidity
+                                val windSpeed = it.wind.speed
+                                val humidity = it.main.humidity
+                                binding.txtNem.text=windSpeed.toString()+"%"
+                                binding.txtHumditiy.text=humidity.toString()+"km/h"
+                                //weather temperature
                              val degree=it.main.temp-273.15
                             binding.txtDegree.text=degree.roundToInt().toString()+"°"
                             }
