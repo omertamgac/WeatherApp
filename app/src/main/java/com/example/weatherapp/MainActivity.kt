@@ -22,7 +22,7 @@ import kotlin.math.roundToInt
     private val BASE_URL = "https://api.openweathermap.org/data/2.5/"
     private var weatherModels: ArrayList<WeatherModel>?=null
     private var job : Job?= null
-    private val API_KEY = "ab23f61f1e92dea4a53b466c89fc62e4"
+    private val API_KEY = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
