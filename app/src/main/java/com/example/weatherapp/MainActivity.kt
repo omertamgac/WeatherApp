@@ -14,7 +14,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.math.roundToInt
 
-//https://api.openweathermap.org/data/2.5/weather?q=(City)&appid=66ac16158ef9319d69581f2125a20279
     class MainActivity : AppCompatActivity() {
 
 
